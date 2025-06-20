@@ -1,3 +1,5 @@
+#![allow(clippy::result_large_err)]
+
 pub mod app;
 pub mod controllers;
 pub mod data;
