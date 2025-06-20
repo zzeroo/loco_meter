@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+View meter_types: {{ item.id }}
+{% endblock title %}
+
+{% block content %}
+<h1>View meter_types: {{ item.id }}</h1>
+<div class="mb-10">
+<div>
+        <label>type: {{item.type}}</label>
+    </div>
+<br />
+<a href="/meter_types">Back to meter_types</a>
+</div>
+{% endblock content %}

@@ -1,5 +1,5 @@
+pub use super::_entities::meter_types::{ActiveModel, Entity, Model};
 use sea_orm::entity::prelude::*;
-pub use super::_entities::meter_types::{ActiveModel, Model, Entity};
 pub type MeterTypes = Entity;
 
 #[async_trait::async_trait]
