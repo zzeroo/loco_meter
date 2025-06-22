@@ -15,7 +15,10 @@ use std::path::Path;
 
 #[allow(unused_imports)]
 use crate::{
-    controllers, initializers, models::_entities::users, tasks, workers::downloader::DownloadWorker,
+    controllers, initializers,
+    models::_entities::{meter_types, users},
+    tasks,
+    workers::downloader::DownloadWorker,
 };
 
 pub struct App;
@@ -51,6 +54,7 @@ impl Hooks for App {
 
     fn routes(_ctx: &AppContext) -> AppRoutes {
         AppRoutes::with_default_routes() // controller routes below
+            .add_route(controllers::meter_types::routes())
             .add_route(controllers::auth::routes())
     }
     async fn connect_workers(ctx: &AppContext, queue: &Queue) -> Result<()> {
@@ -69,6 +73,11 @@ impl Hooks for App {
     async fn seed(ctx: &AppContext, base: &Path) -> Result<()> {
         db::seed::<users::ActiveModel>(&ctx.db, &base.join("users.yaml").display().to_string())
             .await?;
+        db::seed::<meter_types::ActiveModel>(
+            &ctx.db,
+            &base.join("meter_types.yaml").display().to_string(),
+        )
+        .await?;
         Ok(())
     }
 }

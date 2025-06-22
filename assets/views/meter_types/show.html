@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+View meter_types: {{ item.id }}
+{% endblock title %}
+
+{% block page_title %}
+View meter_types: {{ item.id }}
+{% endblock page_title %}
+
+
+{% block content %}
+<div class="mb-10">
+    <div>
+    <label><b>{{"meter_type" | capitalize }}:</b> {{item.meter_type}}</label>
+    </div>
+<br />
+<a href="/meter_types">Back to meter_types</a>
+</div>
+{% endblock content %}
