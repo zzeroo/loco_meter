@@ -16,7 +16,7 @@ use std::path::Path;
 #[allow(unused_imports)]
 use crate::{
     controllers, initializers,
-    models::_entities::{meter_types, users},
+    models::_entities::{meter_types, units, users},
     tasks,
     workers::downloader::DownloadWorker,
 };
@@ -54,6 +54,7 @@ impl Hooks for App {
 
     fn routes(_ctx: &AppContext) -> AppRoutes {
         AppRoutes::with_default_routes() // controller routes below
+            .add_route(controllers::units::routes())
             .add_route(controllers::meter_types::routes())
             .add_route(controllers::auth::routes())
     }
@@ -78,6 +79,8 @@ impl Hooks for App {
             &base.join("meter_types.yaml").display().to_string(),
         )
         .await?;
+        db::seed::<units::ActiveModel>(&ctx.db, &base.join("units.yaml").display().to_string())
+            .await?;
         Ok(())
     }
 }

@@ -3,4 +3,5 @@
 pub mod prelude;
 
 pub mod meter_types;
+pub mod units;
 pub mod users;

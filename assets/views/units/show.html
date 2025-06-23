@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+View units: {{ item.id }}
+{% endblock title %}
+
+{% block page_title %}
+View units: {{ item.id }}
+{% endblock page_title %}
+
+
+{% block content %}
+<div class="mb-10">
+    <div>
+    <label><b>{{"unit" | capitalize }}:</b> {{item.unit}}</label>
+    </div>
+<br />
+<a href="/units">Back to units</a>
+</div>
+{% endblock content %}
